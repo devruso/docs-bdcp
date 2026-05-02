@@ -24,6 +24,11 @@
 - **`should be able to list the components`**: Para que esse teste passe, sua aplicação deve retornar um array de disciplinas.
 - **`should be able to list the component by id`**: Para que esse teste passe, sua aplicação deve retornar um objeto do tipo disciplina referente a disciplina encontrada para o respectivo id.
 - **`should be able to list the components filtered by name or code`**: Para que esse teste passe, sua aplicação deve retornar um array de disciplinas que deem match com um nome ou código.
+- **`should be able to preview a draft import from DOCX/PDF`**: Para que esse teste passe, sua aplicação deve receber um arquivo válido autenticado na rota de preview de rascunho e retornar um payload sugerido com os campos reconhecidos e a lista de seções não reconhecidas para revisão humana.
+- **`should not be able to preview a draft import without file`**: Para que esse teste passe, sua aplicação deve retornar código 400 quando a rota de preview for chamada sem arquivo multipart.
+- **`should not be able to preview a draft import with unsupported file type`**: Para que esse teste passe, sua aplicação deve retornar código 400 quando a rota de preview receber um arquivo diferente de PDF ou DOCX.
+- **`should not be able to preview a draft import above file size limit`**: Para que esse teste passe, sua aplicação deve retornar código 400 quando o arquivo exceder o limite configurado de upload.
+- **`should be able to export component PDF with approval metadata when available`**: Para que esse teste passe, sua aplicação deve incluir no PDF exportado os dados de aprovação formal da disciplina quando o último log de aprovação existir.
 
 | Testes Unitários | Módulo de Auth |
 |---------|-----------------|
@@ -52,6 +57,9 @@
 |---------|-----------------|
 | *Quantidade Estimada* | 5 |
 | *Prioridade* | Altíssima |
+
+- Validar o fluxo completo de import preview autenticado seguido de criação/atualização do draft revisado.
+- Validar que uma disciplina aprovada preserva rastreabilidade de data e ata/referência de aprovação na exportação oficial.
 
 | Testes de Integração | Módulo de Usuário + Auth |
 |---------|-----------------|
