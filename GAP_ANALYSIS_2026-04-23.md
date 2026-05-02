@@ -10,6 +10,28 @@
 - Main gaps are authorization governance and requirement mismatches around profile/teacher management.
 - Highest-risk issues are related to missing admin guard in sensitive routes.
 
+## Update 2026-05-02 (Implemented Slice)
+- Fixed public discipline details flow to align with E03US03 public access behavior:
+  - `GET /api/components/:code` is now public (no auth middleware).
+  - Component lookup by code now uses exact case-insensitive comparison (no partial `LIKE %code%` match).
+  - `ementas-app` detail page no longer requests protected draft listing for non-authenticated users.
+- Hardened SIAC crawler import for E03US08:
+  - importer now uses received `cdCurso` and `nuPerCursoInicial` values instead of hardcoded course/semester;
+  - imports all extracted components from SIAC detail pages;
+  - skips duplicate components safely while preserving error propagation for unexpected failures;
+  - captures prerequisite information in simplified mode (text/codes only), without automatic linkage workflow.
+- Functional modeling update for official lifecycle (E03US04/E03US06):
+  - approval logs now persist `versionCode` (`ddMMyyyy + ata`), `officialProgram`, and `officialSyllabus`;
+  - official version is explicitly displayed in `ementas-app` details, separated from draft visualization.
+- Docker Compose end-to-end SIAC validation (real course/semester):
+  - stack: `docker compose up -d --build` in `api-bdcp`;
+  - import request payload: `{ "cdCurso": 112140, "nuPerCursoInicial": 20132 }`;
+  - observed result in API after authenticated import: `beforeTotal=1`, `afterTotal=37`, sample imported codes `MATA67,MATA66,MATE11,MATA88,...`;
+  - sample detail check: `GET /api/components/MATA67` returned `prerequeriments="NAO_SE_APLICA"`, proving simplified prerequisite persistence.
+- Validation evidence:
+  - `api-bdcp`: `jest ComponentDocumentFlow.spec.ts --runInBand` passed.
+  - `ementas-app`: `vitest run src/pages/DisciplineDetailsPage.test.tsx` passed.
+
 ## Traceability Matrix
 
 | Requirement | Status | Evidence | Risk | Recommended slice |
