@@ -34,6 +34,11 @@
 - **`should be able to get component details by code without authentication`**: Para que esse teste passe, a rota pública de detalhes por código deve retornar a disciplina publicada sem exigir token.
 - **`should return the exact draft by code even when there are similar codes`**: Para que esse teste passe, ao consultar um código de disciplina em rascunho o backend deve retornar exclusivamente a disciplina com igualdade exata case-insensitive, sem confundir com códigos semelhantes.
 - **`should persist draft update log with previous/new values for critical fields`**: Para que esse teste passe, ao alterar rascunho e publicar a disciplina o histórico deve registrar `program` e `workload` com valores anteriores e novos (before/after).
+- **`should list active public shares with pagination and sorting`**: Para que esse teste passe, o endpoint de listagem de links ativos por disciplina deve respeitar `page`, `limit`, `sortBy` e `sortOrder`, retornando `results`, `total` e `meta.totalPages`.
+- **`should revoke all active shares from a component`**: Para que esse teste passe, ao acionar a revogação em massa o backend deve invalidar todos os links ativos da disciplina e retornar `revokedCount` coerente.
+- **`should not allow non-admin user to revoke all active shares`**: Para que esse teste passe, o backend deve negar com 401 tentativas de revogação em massa realizadas por usuário sem elegibilidade administrativa.
+- **`should ignore JS/CSS token noise when SIGAA page has no components`**: Para que esse teste passe, o parser SIGAA não pode inferir códigos de disciplina a partir de tokens técnicos (CSS/JSF) quando a página pública não contém componentes curriculares.
+- **`should extract component rows from tabular SIGAA-like HTML`**: Para que esse teste passe, o parser SIGAA deve extrair código/nome/departamento e remover duplicatas quando houver linhas tabulares válidas de componentes.
 
 | Testes Unitários | Módulo de Auth |
 |---------|-----------------|
@@ -65,6 +70,25 @@
 
 - Validar o fluxo completo de import preview autenticado seguido de criação/atualização do draft revisado.
 - Validar que uma disciplina aprovada preserva rastreabilidade de data e ata/referência de aprovação na exportação oficial.
+- Validar governança de compartilhamento público temporário na tela de detalhe com filtros por criador e faixa de expiração.
+- Validar paginação e ordenação de links ativos em cenários de alto volume por disciplina.
+
+## Matriz de Rastreabilidade (Requisito -> Teste)
+
+- `E01US05` -> `should be able to update user role as super admin` (frontend) e cenários de autorização em backend para governança de papel.
+- `E03US09` -> `should list active public shares with pagination and sorting`, `should revoke all active shares from a component`, `should not allow non-admin user to revoke all active shares`, além dos cenários de filtro e revogação unitária no frontend.
+- `E03US10` -> `should ignore JS/CSS token noise when SIGAA page has no components` e `should extract component rows from tabular SIGAA-like HTML` para robustez do crawler público SIGAA.
+
+## Evidência de Validação SIGAA Real (Parser) - 2026-05-04
+
+- Fixtures reais coletadas via `Invoke-WebRequest` em `api-bdcp/src/tests/fixtures/sigaa`.
+- Casos reais usados na regressão:
+  - `source-department-1876851.html`: página pública sem turmas (`Nenhuma turma encontrada`), validando rejeição de falso positivo.
+  - `source-department-1876885.html`: mesma estrutura sem componentes, usada para inspeção manual de robustez.
+  - `source-program-25210.html` e `source-program-43753.html`: resposta pública sem currículo tabular de componentes para extração direta.
+- Resultado validado em teste automatizado (`CrawlerSigaaParser.spec.ts`):
+  - precisão de rejeição de ruído em caso real sem componente: `100%` (0 itens esperados, 0 extraídos);
+  - acerto estrutural no caso controlado tabular: `100%` (2/2 códigos extraídos sem duplicidade).
 
 | Testes de Integração | Módulo de Usuário + Auth |
 |---------|-----------------|
@@ -89,3 +113,20 @@
   - códigos de exemplo importados: `MATA67, MATA66, MATE11, MATA88, MATA65...`.
 - Verificação complementar:
   - `GET /api/components/MATA67` retornou `prerequeriments="NAO_SE_APLICA"`, conforme simplificação de pré-requisitos (texto/códigos sem vínculo automático nesta etapa).
+
+## Evidência Final de Acurácia SIGAA (Banca) - 2026-05-04
+
+- Descoberta de fonte por fluxo JSF (`busca_componentes.jsf`) concluída para:
+  - DCC/IC: unidade `1114` (graduação), 133 componentes extraídos;
+  - DCI/IC: unidade `2440` (graduação), 32 componentes extraídos;
+  - PGCOMP/IC: unidade `1820` (stricto/mestrado), 70 componentes extraídos.
+- Medição positiva em lote com verdade-terreno manual estratificada (15 amostras):
+  - `code`: 100% (15/15)
+  - `name`: 100% (15/15)
+  - `department`: 100% (15/15)
+  - `academicLevel`: 100% (15/15)
+- Artefatos de evidência:
+  - `docs-bdcp/SIGAA_REAL_CASE_MATRIX.md`
+  - `docs-bdcp/SIGAA_ACCURACY_FINAL_REPORT_2026-05-04.md`
+  - `docs-bdcp/SIGAA_ACCURACY_SLIDES_2026-05-05.md`
+  - `api-bdcp/src/tests/fixtures/sigaa/accuracy-results.json`

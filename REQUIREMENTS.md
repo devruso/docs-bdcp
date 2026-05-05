@@ -95,3 +95,13 @@
 |---------|-----------------|
 | *Descrição da história* | Implementação de Crawler para importar dados de disciplinas. |
 |*Critérios de aceitação*| Implementar crawler para que as disciplinas estejam disponíveis inicialmente na aplicação.
+
+| E01US05 | Governança de perfis por SUPER_ADMIN |
+|---------|-----------------|
+| *Descrição da história* | Como SUPER_ADMIN, quero promover e rebaixar perfis de usuários no painel administrativo, para manter governança explícita de permissões. |
+|*Critérios de aceitação*| _Cenário 01: Alterar perfil de usuário_ <br> Dado que o usuário autenticado possua perfil SUPER_ADMIN <br> Quando selecionar um novo perfil para um usuário e salvar <br> Então o sistema deve persistir o novo papel (`teacher`, `admin` ou `super_admin`) <br> E exibir confirmação de sucesso. <br><br> _Cenário 02: Bloqueio para não-SUPER_ADMIN_ <br> Dado que o usuário autenticado não possua perfil SUPER_ADMIN <br> Quando tentar alterar o perfil de outro usuário <br> Então o sistema deve negar a operação com erro de autorização. <br><br> _Cenário 03: Autoproteção SUPER_ADMIN_ <br> Dado que o usuário SUPER_ADMIN esteja alterando perfis <br> Quando tentar remover o próprio papel de SUPER_ADMIN <br> Então o sistema deve bloquear a operação.
+
+| E03US09 | Gerenciar compartilhamentos públicos temporários |
+|---------|-----------------|
+| *Descrição da história* | Como professor/admin, quero listar e revogar links públicos ativos de uma disciplina, incluindo revogação em massa, para controlar a exposição externa do conteúdo oficial. |
+|*Critérios de aceitação*| _Cenário 01: Listar links ativos_ <br> Dado que o usuário esteja autenticado na tela de detalhes da disciplina <br> Quando abrir a seção de compartilhamentos <br> Então o sistema deve listar os links públicos ativos com data de expiração e criador. <br><br> _Cenário 02: Filtrar por criador e expiração_ <br> Dado que existam múltiplos links ativos <br> Quando aplicar filtros de criador e faixa de expiração <br> Então o sistema deve restringir a listagem aos links que atendem aos filtros. <br><br> _Cenário 03: Revogação unitária_ <br> Dado que exista um link ativo <br> Quando o usuário clicar em revogar link <br> Então o sistema deve invalidar imediatamente o token e remover o item da listagem. <br><br> _Cenário 04: Revogação em massa_ <br> Dado que existam links ativos para a disciplina <br> Quando o usuário confirmar a ação de revogar todos <br> Então o sistema deve revogar todos os links ativos elegíveis e retornar a quantidade revogada.
