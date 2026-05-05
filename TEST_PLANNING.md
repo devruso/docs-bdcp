@@ -1,4 +1,4 @@
-# Planejamento de Testes
+﻿# Planejamento de Testes
 
 ### Definições:
 - Tecnologias
@@ -101,7 +101,7 @@
 
 ## Evidência de Validação SIGAA Real (Parser) - 2026-05-04
 
-- Fixtures reais coletadas via `Invoke-WebRequest` em `api-bdcp/src/tests/fixtures/sigaa`.
+- Fixtures reais coletadas via `Invoke-WebRequest` em `ementas-api/src/tests/fixtures/sigaa`.
 - Casos reais usados na regressão:
   - `source-department-1876851.html`: página pública sem turmas (`Nenhuma turma encontrada`), validando rejeição de falso positivo.
   - `source-department-1876885.html`: mesma estrutura sem componentes, usada para inspeção manual de robustez.
@@ -122,7 +122,7 @@
 
 ## Evidência de Execução E2E (Docker Compose) - 2026-05-02
 
-- Ambiente: `api-bdcp/docker-compose.yml` (serviços `api`, `app`, `postgres`).
+- Ambiente: `ementas-api/docker-compose.yml` (serviços `api`, `app`, `postgres`).
 - Cenário executado:
   - build e subida da stack com `docker compose up -d --build`;
   - criação de usuário convidado e autenticação na API;
@@ -146,10 +146,10 @@
   - `department`: 100% (15/15)
   - `academicLevel`: 100% (15/15)
 - Artefatos de evidência:
-  - `docs-bdcp/SIGAA_REAL_CASE_MATRIX.md`
-  - `docs-bdcp/SIGAA_ACCURACY_FINAL_REPORT_2026-05-04.md`
-  - `docs-bdcp/SIGAA_ACCURACY_SLIDES_2026-05-05.md`
-  - `api-bdcp/src/tests/fixtures/sigaa/accuracy-results.json`
+  - `ementas-docs/SIGAA_REAL_CASE_MATRIX.md`
+  - `ementas-docs/SIGAA_ACCURACY_FINAL_REPORT_2026-05-04.md`
+  - `ementas-docs/SIGAA_ACCURACY_SLIDES_2026-05-05.md`
+  - `ementas-api/src/tests/fixtures/sigaa/accuracy-results.json`
 
 ## Evidência Complementar de Importação Ativa - 2026-05-05
 
@@ -172,26 +172,26 @@
 ## Evidência Visual Complementar (Frontend) - 2026-05-05
 
 - Validação por links públicos temporários de disciplinas importadas:
-  - SIAC: `MATA66` em `docs-bdcp/assets/validation-shared-mata66.png`.
-  - SIAC: `MATE11` em `docs-bdcp/assets/validation-shared-mate11.png`.
-  - SIGAA público: `IC0027` em `docs-bdcp/assets/validation-shared-ic0027.png`.
+  - SIAC: `MATA66` em `ementas-docs/assets/validation-shared-mata66.png`.
+  - SIAC: `MATE11` em `ementas-docs/assets/validation-shared-mate11.png`.
+  - SIGAA público: `IC0027` em `ementas-docs/assets/validation-shared-ic0027.png`.
 - Validação automatizada de layout institucional e exportação oficial (frontend local atualizado):
-  - Listagem com shell atualizado e filtros alinhados: `docs-bdcp/assets/validation-list-layout-2026-05-05.png`.
-  - Detalhe com mensagem amigável de metadados de aprovação: `docs-bdcp/assets/validation-detail-layout-2026-05-05.png`.
+  - Listagem com shell atualizado e filtros alinhados: `ementas-docs/assets/validation-list-layout-2026-05-05.png`.
+  - Detalhe com mensagem amigável de metadados de aprovação: `ementas-docs/assets/validation-detail-layout-2026-05-05.png`.
 - Evidências anteriores mantidas para rastreabilidade:
-  - `docs-bdcp/assets/validation-shared-mata67.png`.
-  - `docs-bdcp/assets/validation-shared-ic0001.png`.
-  - `docs-bdcp/assets/validation-list-mata67.png`.
+  - `ementas-docs/assets/validation-shared-mata67.png`.
+  - `ementas-docs/assets/validation-shared-ic0001.png`.
+  - `ementas-docs/assets/validation-list-mata67.png`.
 
 ## Pacote Visual Estratificado Para Banca - 2026-05-05
 
 - Estrato SIAC:
-  - `MATA66` em `docs-bdcp/assets/validation-shared-mata66.png`.
-  - `MATE11` em `docs-bdcp/assets/validation-shared-mate11.png`.
-  - `MATA88` em `docs-bdcp/assets/validation-shared-mata88.png`.
+  - `MATA66` em `ementas-docs/assets/validation-shared-mata66.png`.
+  - `MATE11` em `ementas-docs/assets/validation-shared-mate11.png`.
+  - `MATA88` em `ementas-docs/assets/validation-shared-mata88.png`.
 - Estrato SIGAA público:
-  - `IC0027` em `docs-bdcp/assets/validation-shared-ic0027.png`.
-  - `IC0061` em `docs-bdcp/assets/validation-shared-ic0061.png`.
+  - `IC0027` em `ementas-docs/assets/validation-shared-ic0027.png`.
+  - `IC0061` em `ementas-docs/assets/validation-shared-ic0061.png`.
 - Critério de composição do pacote:
   - três disciplinas provenientes da carga SIAC com conteúdo programático textual preservado;
   - duas disciplinas provenientes do SIGAA público com renderização do fallback oficial quando a fonte pública não expõe ementa e conteúdo programático completos;
@@ -200,7 +200,7 @@
 ## Snapshot Canônico de Regressão SIGAA - 2026-05-05
 
 - Referência oficial para planejamento de testes e comparação de cobertura institucional:
-  - `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
+  - `ementas-api/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
 - Critério de uso:
   - todo ajuste de parser que afete cobertura deve comparar resultados contra este snapshot canônico;
   - snapshots auxiliares (`sample`, `rich-sample` e `final`) podem apoiar diagnóstico, mas não substituem a referência oficial.
@@ -221,9 +221,9 @@
 2. Executar importacao/reconciliacao SIGAA da unidade alvo:
   - exemplo: `npm run sigaa:reconcile -- --sourceType=department --sourceId=1114 --academicLevel=graduacao`
 3. Coletar artefatos gerados (`.html` e `.json`) e versionar amostra representativa em:
-  - `api-bdcp/src/tests/fixtures/sigaa/detail-signatures`
+  - `ementas-api/src/tests/fixtures/sigaa/detail-signatures`
 4. Atualizar o manifesto de regressao:
-  - `api-bdcp/src/tests/fixtures/sigaa/detail-signatures/manifest.json`
+  - `ementas-api/src/tests/fixtures/sigaa/detail-signatures/manifest.json`
 5. Executar regressao automatizada do parser:
   - `CrawlerSigaaDetailSignatureRegression.spec.ts`
 
@@ -233,3 +233,5 @@
 - Cada unidade deve possuir amostra minima de 4 assinaturas de detalhe.
 - O parser nao pode vazar rotulos estruturais como valor de pre-requisito (ex.: `Co-Requisitos:`).
 - O teste de fallback multi-payload JSF deve permanecer verde, garantindo robustez quando ha mais de um `onclick` valido por linha.
+
+

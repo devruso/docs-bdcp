@@ -1,4 +1,4 @@
-# Diario de Escrita Academica (BDCP)
+﻿# Diario de Escrita Academica (BDCP)
 
 ## 2026-05-05 - Consolidacao do slice de crawler institucional
 

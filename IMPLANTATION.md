@@ -1,4 +1,4 @@
-# Documentação de Implantação
+﻿# Documentação de Implantação
 
 - Implantação 
 
@@ -32,20 +32,20 @@
 1. Faça o clone dos repositórios backend e frontend respectivamente abaixo:
 
 ```sh
-  $ git clone https://github.com/MATE85-Grupo4-20221/api-bdcp.git
-  $ git clone https://github.com/MATE85-Grupo4-20221/app-bdcp.git
+  $ git clone https://github.com/devruso/ementas-api.git
+  $ git clone https://github.com/devruso/ementas-app.git
 ```
 
 2. Executando a Aplicação Backend:
  ```sh
     # Abra o repositório em seu editor preferido
-    $ cd /api-bdcp
+    $ cd /ementas-api
     
-    # Mude para a branch de desenvolvimento
-    $ git checkout dev
+    # Mude para a branch principal
+    $ git checkout main
     
     # Faça uma cópia do arquivo .env.example e renomeie-o apenas para .env
-    # É neste arquivo que estão definidas as variáveis de conexão com o banco. 
+    # É neste arquivo que estão definidas as variáveis de conexão com o banco.
     $ cp .env.example .env
  
     # Instale as dependências
@@ -68,10 +68,10 @@
 3. Executando a Aplicação Frontend:
  ```sh
     # Abra o repositório em seu editor preferido
-    $ cd /app-bdcp
+    $ cd /ementas-app
     
-    # Mude para a branch de desenvolvimento
-    $ git checkout develop
+    # Mude para a branch principal
+    $ git checkout main
     
     # Faça uma cópia do arquivo .env.example e renomeie-o apenas para .env
     # É neste arquivo que estão definidas as variáveis de conexão com a API.
@@ -129,7 +129,7 @@
 
 ### Recuperação de Texto com Acentuação Corrompida
 1. Antes de refazer cargas do SIGAA público em uma base já utilizada, execute no backend o comando `npm run repair:encoding`.
-2. O script corrige em lote campos textuais já persistidos em `components` e `component_drafts` quando houver mojibake UTF-8 interpretado como Latin-1, como `TÃ³picos` ou `PÃ³s-GraduaÃ§Ã£o`.
+2. O script corrige em lote campos textuais já persistidos em `components` e `component_drafts` quando houver mojibake UTF-8 interpretado como Latin-1, como `T�f³picos` ou `P�f³s-Gradua�f§�f£o`.
 3. Após o reparo, execute novamente a importação pelo frontend apenas se desejar complementar disciplinas novas ainda não cadastradas.
 4. Para validação rápida, abra uma disciplina SIGAA já importada e confirme a presença correta de acentos em nome e departamento.
 
@@ -139,4 +139,6 @@
 3. Se `affectedFields` for maior que zero em alguma entidade, priorize rodar novamente `npm run repair:encoding` e revisar manualmente as amostras retornadas.
 
 ---
+
+
 

@@ -1,4 +1,4 @@
-# Relatorio Final de Acuracia - Crawler SIGAA Publico
+﻿# Relatorio Final de Acuracia - Crawler SIGAA Publico
 
 Data de consolidacao: 2026-05-04  
 Projeto: BDCP (TCC)  
@@ -12,7 +12,7 @@ Objetivo: apresentar evidencias reais de descoberta de fonte, acuracia por campo
   - DCI/IC (`unidade=2440`, nivel `G`)
   - PGCOMP/IC (`unidade=1820`, nivel `S`, mapeado para `mestrado` no parser)
 - Verdade-terreno: amostra manual estratificada com 15 disciplinas (5 por fonte).
-- Motor de avaliacao: script reprodutivel em `api-bdcp/src/scripts/sigaa-accuracy-report.ts`.
+- Motor de avaliacao: script reprodutivel em `ementas-api/src/scripts/sigaa-accuracy-report.ts`.
 
 ## 2) Descoberta Concluida (IDs/Fonte)
 
@@ -37,10 +37,10 @@ Base medida: 15 amostras estratificadas (5 DCC, 5 DCI, 5 PGCOMP).
 
 | Campo | Visual |
 |---|---|
-| code | `██████████ 100%` |
-| name | `██████████ 100%` |
-| department | `██████████ 100%` |
-| academicLevel | `██████████ 100%` |
+| code | `�-^�-^�-^�-^�-^�-^�-^�-^�-^�-^ 100%` |
+| name | `�-^�-^�-^�-^�-^�-^�-^�-^�-^�-^ 100%` |
+| department | `�-^�-^�-^�-^�-^�-^�-^�-^�-^�-^ 100%` |
+| academicLevel | `�-^�-^�-^�-^�-^�-^�-^�-^�-^�-^ 100%` |
 
 ## 4) Ajustes Tecnicos que Viabilizaram o Resultado
 
@@ -51,13 +51,13 @@ Base medida: 15 amostras estratificadas (5 DCC, 5 DCI, 5 PGCOMP).
 
 ## 5) Evidencias Reproduziveis
 
-- Script de medicao: `api-bdcp/src/scripts/sigaa-accuracy-report.ts`
-- Verdade-terreno estratificada: `api-bdcp/src/tests/fixtures/sigaa/manual-ground-truth-stratified.json`
-- Resultado consolidado bruto: `api-bdcp/src/tests/fixtures/sigaa/accuracy-results.json`
+- Script de medicao: `ementas-api/src/scripts/sigaa-accuracy-report.ts`
+- Verdade-terreno estratificada: `ementas-api/src/tests/fixtures/sigaa/manual-ground-truth-stratified.json`
+- Resultado consolidado bruto: `ementas-api/src/tests/fixtures/sigaa/accuracy-results.json`
 - Fixtures reais de entrada:
-  - `api-bdcp/src/tests/fixtures/sigaa/source-busca-componentes-dcc-1114.html`
-  - `api-bdcp/src/tests/fixtures/sigaa/source-busca-componentes-dci-2440.html`
-  - `api-bdcp/src/tests/fixtures/sigaa/source-busca-componentes-pgcomp-1820.html`
+  - `ementas-api/src/tests/fixtures/sigaa/source-busca-componentes-dcc-1114.html`
+  - `ementas-api/src/tests/fixtures/sigaa/source-busca-componentes-dci-2440.html`
+  - `ementas-api/src/tests/fixtures/sigaa/source-busca-componentes-pgcomp-1820.html`
 
 ## 6) Leitura para Banca
 
@@ -94,7 +94,7 @@ Base medida: 15 amostras estratificadas (5 DCC, 5 DCI, 5 PGCOMP).
 
 Para sair do recorte por poucos casos e cobrir a base ampla, foi adicionado um pipeline de varredura total do SIGAA publico:
 
-- Script: `api-bdcp/src/scripts/sigaa-full-catalog.ts`
+- Script: `ementas-api/src/scripts/sigaa-full-catalog.ts`
 - Comando: `npm run sigaa:full-catalog`
 
 ### O que o script faz
@@ -160,7 +160,7 @@ Cobertura por agrupamento (resumo):
 
 Arquivo versionado de baseline:
 
-- `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.json`
+- `ementas-api/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.json`
 
 ### Cobertura de campos ricos e lacuna atual
 
@@ -185,8 +185,10 @@ As tres acoes do proximo slice foram executadas:
 
 1. Navegacao JSF de detalhe por acao de linha foi implementada no crawler (suporte a `detailActionUrl` e `detailActionPayload`).
 2. Persistencia estruturada de co-requisitos/equivalencias foi implementada com tabela dedicada e migracao.
-3. Baseline completa foi reexecutada e matriz final publicada em `docs-bdcp/SIGAA_COVERAGE_MATRIX_FINAL_2026-05-05.md`.
+3. Baseline completa foi reexecutada e matriz final publicada em `ementas-docs/SIGAA_COVERAGE_MATRIX_FINAL_2026-05-05.md`.
 
 Resultado observado na baseline final: a cobertura rica em lote institucional permaneceu zero para campos de detalhe, indicando que o fluxo amplo ainda nao recebeu endpoint de detalhe efetivo no HTML processado nesta varredura.
 
 Interpretacao: houve fechamento de infraestrutura e governanca de dados, com lacuna residual de integracao para enriquecimento massivo por detalhe em todos os cursos/unidades.
+
+

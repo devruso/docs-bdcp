@@ -1,4 +1,4 @@
-# Matriz de Casos Reais - SIGAA Publico (UFBA)
+﻿# Matriz de Casos Reais - SIGAA Publico (UFBA)
 
 Data de coleta: 2026-05-04  
 Ambiente: execucao local Windows via `Invoke-WebRequest -UseBasicParsing`
@@ -39,4 +39,5 @@ Escopo medido nesta etapa:
 | academicLevel | propagacao do nivel recebido | 100% (15/15) |
 
 Artefato de suporte:
-- Resultado estruturado da medicao: `api-bdcp/src/tests/fixtures/sigaa/accuracy-results.json`.
+- Resultado estruturado da medicao: `ementas-api/src/tests/fixtures/sigaa/accuracy-results.json`.
+

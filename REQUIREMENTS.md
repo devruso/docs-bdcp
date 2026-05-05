@@ -1,10 +1,10 @@
-# Documentação de Requisitos
+﻿# Documentação de Requisitos
 
 ## Requisitos:
 
-### Épicos:
+### �?picos:
 
-|Num | Épico | Personas envolvidas | Descrição do épico |
+|Num | �?pico | Personas envolvidas | Descrição do épico |
 | - | --------- | --------- | --------- |
 |01 | Gerenciamento de usuários |Professor | Permitir que o professor gere convite para que novos professores se cadastrem, visualize os usuários cadastrados e edite suas informações.
 |02 | Realizar login da aplicação | Professor | Disponibilizar interface de login para permitir que o professor realize o login na aplicação e permitir a redefinição de sua senha.
@@ -105,3 +105,4 @@
 |---------|-----------------|
 | *Descrição da história* | Como professor/admin, quero listar e revogar links públicos ativos de uma disciplina, incluindo revogação em massa, para controlar a exposição externa do conteúdo oficial. |
 |*Critérios de aceitação*| _Cenário 01: Listar links ativos_ <br> Dado que o usuário esteja autenticado na tela de detalhes da disciplina <br> Quando abrir a seção de compartilhamentos <br> Então o sistema deve listar os links públicos ativos com data de expiração e criador. <br><br> _Cenário 02: Filtrar por criador e expiração_ <br> Dado que existam múltiplos links ativos <br> Quando aplicar filtros de criador e faixa de expiração <br> Então o sistema deve restringir a listagem aos links que atendem aos filtros. <br><br> _Cenário 03: Revogação unitária_ <br> Dado que exista um link ativo <br> Quando o usuário clicar em revogar link <br> Então o sistema deve invalidar imediatamente o token e remover o item da listagem. <br><br> _Cenário 04: Revogação em massa_ <br> Dado que existam links ativos para a disciplina <br> Quando o usuário confirmar a ação de revogar todos <br> Então o sistema deve revogar todos os links ativos elegíveis e retornar a quantidade revogada.
+

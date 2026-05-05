@@ -1,4 +1,4 @@
-# SIGAA - Resumo para Slides (Defesa)
+﻿# SIGAA - Resumo para Slides (Defesa)
 
 ## 1) Escopo Validado
 
@@ -45,6 +45,7 @@ xychart-beta
 
 ## 6) Artefatos de apoio
 
-- Matriz de casos reais: docs-bdcp/SIGAA_REAL_CASE_MATRIX.md
-- Relatorio final: docs-bdcp/SIGAA_ACCURACY_FINAL_REPORT_2026-05-04.md
-- Resultado estruturado (JSON): api-bdcp/src/tests/fixtures/sigaa/accuracy-results.json
+- Matriz de casos reais: ementas-docs/SIGAA_REAL_CASE_MATRIX.md
+- Relatorio final: ementas-docs/SIGAA_ACCURACY_FINAL_REPORT_2026-05-04.md
+- Resultado estruturado (JSON): ementas-api/src/tests/fixtures/sigaa/accuracy-results.json
+

@@ -1,4 +1,4 @@
-# General Documentation
+﻿# General Documentation
 ## Database System of Syllabus of the Subjects of the Federal University of Bahia
 ### In this repository you found all documentation of this project.
 
@@ -9,7 +9,7 @@
 - [Diario de Escrita Academica](WRITING_LOG.md)
 - [Matriz Final de Cobertura SIGAA (2026-05-05)](SIGAA_COVERAGE_MATRIX_FINAL_2026-05-05.md)
 
-- Snapshot canônico de regressão SIGAA: `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
+- Snapshot canônico de regressão SIGAA: `ementas-api/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
 
 - [Specifications](./assets/especification.pdf)
 - [Clickup Manager](https://app.clickup.com/31043046/settings/team/31043046/project)
@@ -17,7 +17,7 @@
 
 ## Incrementos Backend Recentes
 
-- Importacao de documento para rascunho via endpoint autenticado de preview multipart em api-bdcp, com suporte inicial a PDF e DOCX.
+- Importacao de documento para rascunho via endpoint autenticado de preview multipart em ementas-api, com suporte inicial a PDF e DOCX.
 - Extracao heuristica de codigo, nome, departamento, semestre, ementa, objetivos, conteudo programatico, metodologia, avaliacao, bibliografia, pre-requisitos e cargas para revisao humana antes do salvamento.
 - Exportacao PDF atualizada para incluir metadados de aprovacao formal da disciplina quando existirem no historico.
 - Pre-requisitos agora seguem classificacao operacional no frontend (existente, pendente e nao se aplica), com selecao automatica por disciplinas publicadas e rascunhos; no backend, codigos sao normalizados e autorreferencia continua bloqueada.
@@ -37,12 +37,12 @@
 
 ### Changelog Academico dos Commits Publicados
 
-- Commit `68a429d` em `api-bdcp`: ajuste de infraestrutura no TypeScript para alinhar a resolucao de modulos do editor com o comportamento efetivo do compilador e eliminar falso positivo de dependencia relacionada ao TypeORM.
+- Commit `68a429d` em `ementas-api`: ajuste de infraestrutura no TypeScript para alinhar a resolucao de modulos do editor com o comportamento efetivo do compilador e eliminar falso positivo de dependencia relacionada ao TypeORM.
 - Commit `901435a` em `ementas-app`: evolucao funcional do frontend com governanca por `SUPER_ADMIN`, assinatura obrigatoria para aprovacao oficial, compartilhamento publico temporario por token e refinamentos de experiencia de uso em fluxos de publicacao e consulta.
 
 ### Evidencias de Validacao
 
-- `api-bdcp`: `npm run typecheck` executado com sucesso apos o ajuste de configuracao em `tsconfig.json`.
+- `ementas-api`: `npm run typecheck` executado com sucesso apos o ajuste de configuracao em `tsconfig.json`.
 - `ementas-app`: `npm run typecheck` executado com sucesso.
 - `ementas-app`: `npm run test:run` executado com sucesso, totalizando 15 testes verdes no slice afetado.
 
@@ -54,11 +54,11 @@ O BDCP apresentava dois tipos distintos de necessidade evolutiva. No backend, ha
 
 #### Decisao Tecnica
 
-Optou-se por separar a evolucao em dois eixos complementares. O primeiro concentrou um ajuste nao funcional de infraestrutura no `api-bdcp`, com foco em previsibilidade do ambiente de desenvolvimento. O segundo concentrou um slice funcional no `ementas-app`, reunindo a introducao do papel `SUPER_ADMIN`, a exigencia de assinatura para publicacao oficial e a criacao de links publicos temporarios com expiracao e revogacao. Essa abordagem favoreceu rastreabilidade entre requisito, implementacao, validacao e historico Git.
+Optou-se por separar a evolucao em dois eixos complementares. O primeiro concentrou um ajuste nao funcional de infraestrutura no `ementas-api`, com foco em previsibilidade do ambiente de desenvolvimento. O segundo concentrou um slice funcional no `ementas-app`, reunindo a introducao do papel `SUPER_ADMIN`, a exigencia de assinatura para publicacao oficial e a criacao de links publicos temporarios com expiracao e revogacao. Essa abordagem favoreceu rastreabilidade entre requisito, implementacao, validacao e historico Git.
 
 #### Evidencia
 
-As mudancas foram publicadas em commits distintos e semanticamente coerentes. O backend foi consolidado no commit `68a429d`, enquanto o frontend foi consolidado no commit `901435a`. Como comprovacao tecnica, o `api-bdcp` passou em `npm run typecheck`, e o `ementas-app` passou em `npm run typecheck` e `npm run test:run`, com cobertura direta dos fluxos de aprovacao e gestao de usuarios.
+As mudancas foram publicadas em commits distintos e semanticamente coerentes. O backend foi consolidado no commit `68a429d`, enquanto o frontend foi consolidado no commit `901435a`. Como comprovacao tecnica, o `ementas-api` passou em `npm run typecheck`, e o `ementas-app` passou em `npm run typecheck` e `npm run test:run`, com cobertura direta dos fluxos de aprovacao e gestao de usuarios.
 
 #### Impacto Academico
 
@@ -118,3 +118,5 @@ Interpretacao operacional:
 - `400`: parametros obrigatorios ausentes ou invalidos
 - `401`: usuario autenticado sem permissao administrativa para importacao
 - `404`: nenhuma disciplina encontrada na fonte SIGAA informada
+
+

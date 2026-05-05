@@ -1,4 +1,4 @@
-# Secao de Monografia - Validacao do Crawler SIGAA Publico
+﻿# Secao de Monografia - Validacao do Crawler SIGAA Publico
 
 ## Problema
 
@@ -19,9 +19,9 @@ Foi adotada estrategia fail-safe no parser SIGAA:
 
 ## Evidencias Implementadas
 
-- Ajuste de parser e fallback: `api-bdcp/src/services/CrawlerService.ts`.
+- Ajuste de parser e fallback: `ementas-api/src/services/CrawlerService.ts`.
 - Regressao automatizada:
-  - `api-bdcp/src/tests/CrawlerSigaaParser.spec.ts`;
+  - `ementas-api/src/tests/CrawlerSigaaParser.spec.ts`;
   - fixture real sem componentes (`source-department-1876851.html`) garantindo rejeicao de falso positivo.
 - Resultado de teste:
   - backend crawler/share: suites verdes (`6/6` no recorte executado);
@@ -35,7 +35,7 @@ Foi adotada estrategia fail-safe no parser SIGAA:
 
 ## Bloco Curto para Monografia (Validação Visual)
 
-Na etapa de validação visual, foi executada conferência no frontend com base em componentes realmente importados pelas rotas de SIAC e SIGAA público. As evidências foram capturadas por links públicos temporários, preservando o estado oficial publicado e permitindo inspeção objetiva da renderização final sem dependência de sessão autenticada. No recorte de 05/05/2026, foram validados os códigos MATA66 e MATE11 (origem SIAC) e IC0027 (origem SIGAA público), com capturas arquivadas em `docs-bdcp/assets/validation-shared-mata66.png`, `docs-bdcp/assets/validation-shared-mate11.png` e `docs-bdcp/assets/validation-shared-ic0027.png`. O resultado confirma aderência entre dados persistidos e apresentação visual institucional, fortalecendo a rastreabilidade requisito -> importação -> evidência para banca.
+Na etapa de validação visual, foi executada conferência no frontend com base em componentes realmente importados pelas rotas de SIAC e SIGAA público. As evidências foram capturadas por links públicos temporários, preservando o estado oficial publicado e permitindo inspeção objetiva da renderização final sem dependência de sessão autenticada. No recorte de 05/05/2026, foram validados os códigos MATA66 e MATE11 (origem SIAC) e IC0027 (origem SIGAA público), com capturas arquivadas em `ementas-docs/assets/validation-shared-mata66.png`, `ementas-docs/assets/validation-shared-mate11.png` e `ementas-docs/assets/validation-shared-ic0027.png`. O resultado confirma aderência entre dados persistidos e apresentação visual institucional, fortalecendo a rastreabilidade requisito -> importação -> evidência para banca.
 
 ## Versão Formal em Estrutura ABNT
 
@@ -45,7 +45,7 @@ Uma etapa crítica do BDCP consiste em demonstrar que os dados importados por ra
 
 ### Método
 
-Para reduzir esse risco, foi adotada uma estratégia de validação visual baseada em evidências produzidas diretamente no frontend. O procedimento utilizou links públicos temporários gerados a partir de componentes oficialmente publicados, o que permitiu observar a renderização final sem dependência de sessão autenticada e sem alterar o estado acadêmico do sistema. O pacote foi organizado de forma estratificada por origem de importação, contemplando três disciplinas provenientes do SIAC (`MATA66`, `MATE11` e `MATA88`) e duas disciplinas provenientes do SIGAA público (`IC0027` e `IC0061`). As capturas foram armazenadas, respectivamente, em `docs-bdcp/assets/validation-shared-mata66.png`, `docs-bdcp/assets/validation-shared-mate11.png`, `docs-bdcp/assets/validation-shared-mata88.png`, `docs-bdcp/assets/validation-shared-ic0027.png` e `docs-bdcp/assets/validation-shared-ic0061.png`.
+Para reduzir esse risco, foi adotada uma estratégia de validação visual baseada em evidências produzidas diretamente no frontend. O procedimento utilizou links públicos temporários gerados a partir de componentes oficialmente publicados, o que permitiu observar a renderização final sem dependência de sessão autenticada e sem alterar o estado acadêmico do sistema. O pacote foi organizado de forma estratificada por origem de importação, contemplando três disciplinas provenientes do SIAC (`MATA66`, `MATE11` e `MATA88`) e duas disciplinas provenientes do SIGAA público (`IC0027` e `IC0061`). As capturas foram armazenadas, respectivamente, em `ementas-docs/assets/validation-shared-mata66.png`, `ementas-docs/assets/validation-shared-mate11.png`, `ementas-docs/assets/validation-shared-mata88.png`, `ementas-docs/assets/validation-shared-ic0027.png` e `ementas-docs/assets/validation-shared-ic0061.png`.
 
 ### Resultado
 
@@ -66,3 +66,5 @@ Conclui-se que a estratégia de validação visual complementa de forma relevant
   1. automatizar coleta com sessao JSF para DCC/DCI/PGCOMP;
   2. gerar verdade-terreno por amostra manual estratificada;
   3. recalcular acuracia por campo em lote e publicar no plano de testes.
+
+
