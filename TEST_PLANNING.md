@@ -130,3 +130,11 @@
   - `docs-bdcp/SIGAA_ACCURACY_FINAL_REPORT_2026-05-04.md`
   - `docs-bdcp/SIGAA_ACCURACY_SLIDES_2026-05-05.md`
   - `api-bdcp/src/tests/fixtures/sigaa/accuracy-results.json`
+
+## Snapshot Canônico de Regressão SIGAA - 2026-05-05
+
+- Referência oficial para planejamento de testes e comparação de cobertura institucional:
+  - `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
+- Critério de uso:
+  - todo ajuste de parser que afete cobertura deve comparar resultados contra este snapshot canônico;
+  - snapshots auxiliares (`sample`, `rich-sample` e `final`) podem apoiar diagnóstico, mas não substituem a referência oficial.

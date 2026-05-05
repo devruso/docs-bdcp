@@ -2,15 +2,17 @@
 
 Projeto: BDCP (TCC)  
 Data de execucao: 2026-05-05  
-Arquivo de baseline: `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.final.json`
+Arquivo de baseline canônico: `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
 
 ## 1) Comando reproduzivel
 
 ```bash
-npm run sigaa:full-catalog -- --concurrency 6 --enrich-details true --details-concurrency 4 --output src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.final.json
+npm run sigaa:full-catalog -- --concurrency 6 --enrich-details true --details-concurrency 4 --output src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json
 ```
 
 ## 2) Resumo de execucao
+
+Observacao: para rastreabilidade de TCC, a referencia oficial de regressao passou a ser o snapshot PRD final (`full-catalog-results.2026-05-05.prd-final.json`).
 
 - `totalUnitsScanned`: 568
 - `successfulUnits`: 568

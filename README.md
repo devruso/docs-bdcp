@@ -9,6 +9,8 @@
 - [Diario de Escrita Academica](WRITING_LOG.md)
 - [Matriz Final de Cobertura SIGAA (2026-05-05)](SIGAA_COVERAGE_MATRIX_FINAL_2026-05-05.md)
 
+- Snapshot canônico de regressão SIGAA: `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
+
 - [Specifications](./assets/especification.pdf)
 - [Clickup Manager](https://app.clickup.com/31043046/settings/team/31043046/project)
 - [Figma Prototype](https://www.figma.com/file/4sI0IP4YRbJTMOepIR8XaY/Prot%C3%B3tipo?node-id=0%3A1)
