@@ -106,3 +106,37 @@
 
 ---
 
+### Primeira Carga Operacional Pelo Frontend
+1. Garanta que a stack esteja ativa com backend em `localhost:3333` e frontend em `localhost:3000`.
+2. Entre com um usuário administrativo institucional da UFBA.
+3. Acesse a tela `Adicionar disciplina`.
+4. No bloco `Importação SIAC`, preencha exatamente:
+  - `Código do curso`: `112140`
+  - `Semestre vigente`: `20132`
+5. Clique em `Importar do SIAC` e aguarde o resumo operacional.
+  - Evidência validada em ambiente ativo: `requested=36`, `created=36`, `failed=0`.
+6. No bloco `Importação SIGAA público`, preencha exatamente:
+  - `Tipo de fonte`: `Programa`
+  - `ID da fonte`: `1820`
+  - `Nível acadêmico`: `Mestrado`
+7. Clique em `Importar do SIGAA público` e aguarde o resumo operacional.
+  - Evidência validada em ambiente ativo: `requested=77`, `created=77`, `failed=0`.
+8. Após cada importação, volte para a listagem de disciplinas para conferir os códigos inseridos e abrir a página de detalhe.
+
+### Códigos Confirmados Em Validação Real
+- SIAC: `MATA67`.
+- SIGAA público: `PGCOMP001`.
+
+### Recuperação de Texto com Acentuação Corrompida
+1. Antes de refazer cargas do SIGAA público em uma base já utilizada, execute no backend o comando `npm run repair:encoding`.
+2. O script corrige em lote campos textuais já persistidos em `components` e `component_drafts` quando houver mojibake UTF-8 interpretado como Latin-1, como `TÃ³picos` ou `PÃ³s-GraduaÃ§Ã£o`.
+3. Após o reparo, execute novamente a importação pelo frontend apenas se desejar complementar disciplinas novas ainda não cadastradas.
+4. Para validação rápida, abra uma disciplina SIGAA já importada e confirme a presença correta de acentos em nome e departamento.
+
+### Auditoria Preventiva de Encoding
+1. Para localizar automaticamente possíveis resíduos de mojibake em tabelas textuais, execute `npm run audit:encoding` no backend.
+2. O relatório inclui totais por entidade (`components`, `component_drafts`, `component_logs`, `users`) e amostras com prévia original e prévia reparada sugerida.
+3. Se `affectedFields` for maior que zero em alguma entidade, priorize rodar novamente `npm run repair:encoding` e revisar manualmente as amostras retornadas.
+
+---
+

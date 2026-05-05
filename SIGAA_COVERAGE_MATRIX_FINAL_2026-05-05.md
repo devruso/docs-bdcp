@@ -52,3 +52,12 @@ npm run sigaa:full-catalog -- --concurrency 6 --enrich-details true --details-co
 Arquivo de saida consolidado:
 
 - `api-bdcp/src/tests/fixtures/sigaa/full-catalog-results.2026-05-05.prd-final.json`
+
+## 7) Regressao por Assinatura de Template (Rastreabilidade)
+
+- Suite dedicada: `api-bdcp/src/tests/CrawlerSigaaDetailSignatureRegression.spec.ts`
+- Manifesto estratificado por ciclo/unidade: `api-bdcp/src/tests/fixtures/sigaa/detail-signatures/manifest.json`
+- Cobertura minima exigida na suite:
+	- ao menos 2 ciclos de captura;
+	- unidades obrigatorias por ciclo: `department-1114`, `department-2440`, `program-1820`;
+	- minimo de 4 assinaturas por unidade em cada ciclo.

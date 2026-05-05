@@ -33,6 +33,32 @@ Foi adotada estrategia fail-safe no parser SIGAA:
 - Reforca principio de fonte canonica: conteudo programatico oficial permanece governado no BDCP.
 - Melhora auditabilidade da etapa de importacao, permitindo demonstrar criterios de qualidade para banca do TCC.
 
+## Bloco Curto para Monografia (Validação Visual)
+
+Na etapa de validação visual, foi executada conferência no frontend com base em componentes realmente importados pelas rotas de SIAC e SIGAA público. As evidências foram capturadas por links públicos temporários, preservando o estado oficial publicado e permitindo inspeção objetiva da renderização final sem dependência de sessão autenticada. No recorte de 05/05/2026, foram validados os códigos MATA66 e MATE11 (origem SIAC) e IC0027 (origem SIGAA público), com capturas arquivadas em `docs-bdcp/assets/validation-shared-mata66.png`, `docs-bdcp/assets/validation-shared-mate11.png` e `docs-bdcp/assets/validation-shared-ic0027.png`. O resultado confirma aderência entre dados persistidos e apresentação visual institucional, fortalecendo a rastreabilidade requisito -> importação -> evidência para banca.
+
+## Versão Formal em Estrutura ABNT
+
+### Problema
+
+Uma etapa crítica do BDCP consiste em demonstrar que os dados importados por rastreamento automatizado não apenas são persistidos corretamente, mas também permanecem coerentes quando exibidos na interface final utilizada para consulta institucional. Sem essa verificação visual, a avaliação poderia se limitar à camada de API, deixando aberta a possibilidade de divergência entre dado persistido e dado efetivamente apresentado ao usuário.
+
+### Método
+
+Para reduzir esse risco, foi adotada uma estratégia de validação visual baseada em evidências produzidas diretamente no frontend. O procedimento utilizou links públicos temporários gerados a partir de componentes oficialmente publicados, o que permitiu observar a renderização final sem dependência de sessão autenticada e sem alterar o estado acadêmico do sistema. O pacote foi organizado de forma estratificada por origem de importação, contemplando três disciplinas provenientes do SIAC (`MATA66`, `MATE11` e `MATA88`) e duas disciplinas provenientes do SIGAA público (`IC0027` e `IC0061`). As capturas foram armazenadas, respectivamente, em `docs-bdcp/assets/validation-shared-mata66.png`, `docs-bdcp/assets/validation-shared-mate11.png`, `docs-bdcp/assets/validation-shared-mata88.png`, `docs-bdcp/assets/validation-shared-ic0027.png` e `docs-bdcp/assets/validation-shared-ic0061.png`.
+
+### Resultado
+
+As evidências confirmaram que o frontend apresentou, de maneira consistente, os dados oficiais persistidos após importação. No estrato SIAC, observou-se a exibição de componentes com conteúdo programático textual efetivamente preservado. No estrato SIGAA público, observou-se comportamento coerente com a limitação da fonte externa, exibindo mensagens de indisponibilidade de ementa e conteúdo programático quando tais campos não estavam acessíveis na listagem pública. Em ambos os casos, a apresentação visual manteve identificação do componente, contexto institucional e organização informacional adequada para leitura acadêmica.
+
+### Ameaça à Validade
+
+Essa validação não substitui uma medição estatística ampla de acurácia por campo em todo o universo de disciplinas importáveis. O recorte adotado constitui uma amostra orientada por evidência operacional recente, útil para demonstrar consistência ponta a ponta, mas ainda sujeita a limitações de cobertura. Além disso, no caso do SIGAA público, a própria fonte pode restringir a exposição de alguns campos, o que limita a completude da validação visual sem invalidar a corretude do comportamento do sistema diante dessa indisponibilidade.
+
+### Conclusão
+
+Conclui-se que a estratégia de validação visual complementa de forma relevante a validação técnica do crawler e da persistência, pois demonstra aderência entre importação, armazenamento e apresentação final no BDCP. Essa evidência fortalece a rastreabilidade entre requisito funcional, implementação e resultado observável, contribuindo para a robustez argumentativa do trabalho perante a banca.
+
 ## Limitacoes e Proximos Passos
 
 - Acuracia positiva em maior escala com paginas 100% reais de grade curricular do SIGAA exige completar descoberta de IDs/fluxo JSF que exponham tabela curricular completa sem autenticacao.
